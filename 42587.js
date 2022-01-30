@@ -4,7 +4,7 @@ function solution(priorities, location) {
   const documents = priorities.map((document, index) => ({ index, importance: document }));
   const done = [];
 
-  while (documents.length > 0) {
+  while (documents.length) {
     if (documents.find((document) => document.importance > documents[0].importance)) {
       documents.push(documents.shift());
     } else {
