@@ -1,4 +1,3 @@
-// 위장
 function solution(clothes) {
   const wardrobe = {};
     

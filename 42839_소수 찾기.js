@@ -1,4 +1,3 @@
-// 소수 
 function solution(numbers) {
   const primeNumbers = new Set();
 

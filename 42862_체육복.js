@@ -1,5 +1,3 @@
-// 체육복
-
 function solution(n, lost, reserve) {
   const lostMembers = [...lost].sort((a, b) => a - b);
   const reserveMembers = [...reserve].sort((a, b) => a - b);

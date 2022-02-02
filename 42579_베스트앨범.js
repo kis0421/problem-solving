@@ -1,5 +1,3 @@
-//  베스트앨범
-
 function solution(genres, plays) {
   const albumMap = {};
   const bestAlbum = [];

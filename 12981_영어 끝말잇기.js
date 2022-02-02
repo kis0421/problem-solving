@@ -1,4 +1,3 @@
-// 영어 끝말잇기
 function solution(n, words) {
   let lastCaracter = "";
   const targetWords = [...words];

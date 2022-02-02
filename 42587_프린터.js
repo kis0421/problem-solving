@@ -1,5 +1,3 @@
-// 프린터
-
 function solution(priorities, location) {
   const documents = priorities.map((document, index) => ({ index, importance: document }));
   const done = [];

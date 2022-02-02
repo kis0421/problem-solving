@@ -1,5 +1,3 @@
-// 다리를 지나는 트럭
-
 function solution(bridge_length, weight, truck_weights) {
   const trucksInfo = truck_weights.map((weight) => ({ location: bridge_length, weight }));
   const bridge = [];

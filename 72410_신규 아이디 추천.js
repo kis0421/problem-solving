@@ -1,5 +1,3 @@
-// 신규 아이디 추천
-
 function solution(new_id) {
   let newId = new_id.toLowerCase()
   .replace(/[^\.a-z0-9-_]/g, '')

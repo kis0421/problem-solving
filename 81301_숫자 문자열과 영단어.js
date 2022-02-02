@@ -1,5 +1,3 @@
-// 숫자 문자열과 영단어
-
 function solution(s) {
     return parseInt(
         s.replace(/one/gi, "1")
