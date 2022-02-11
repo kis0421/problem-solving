@@ -1,0 +1,32 @@
+// bfs로 고쳐야함 1번케이스 
+
+function solution(tickets) {
+  const visited = [];
+
+  let targetCity = "ICN";
+  while (visited.length < tickets.length) {
+    const targetIndexes = tickets.reduce((acc, current, index) => {
+      if (current[0] === targetCity) {
+        acc.push(index);
+      }
+      return acc;
+    }, []);
+
+    const startCity = targetIndexes
+      .reduce((acc, cur) => {
+        if (!visited.includes(cur)
+          && (tickets.length - 1 === visited.length || tickets.find((i) => i[0] === tickets[cur][1]))) {
+          acc.push([cur, tickets[cur]]);
+        }
+        return acc;
+      }, [])
+      .sort((a, b) => a[1][1].localeCompare(b[1][1]));
+    if (startCity.length) {
+      visited.push(startCity[0][0]);
+      targetCity = startCity[0][1][1];
+    } else {
+      break;
+    }
+  }
+  return [tickets[visited[0]][0], ...visited.map((city) => tickets[city][1])];
+}
