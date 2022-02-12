@@ -1,32 +1,28 @@
-// bfs로 고쳐야함 1번케이스 
+// DFS로 모든 가능 케이스 구한 뒤 정렬
 
 function solution(tickets) {
-  const visited = [];
+  const visitedCase = [];
 
-  let targetCity = "ICN";
-  while (visited.length < tickets.length) {
+  function visitCity(arr, visited) {
     const targetIndexes = tickets.reduce((acc, current, index) => {
-      if (current[0] === targetCity) {
+      if (current[0] === arr[arr.length - 1] && !visited.includes(index)) {
         acc.push(index);
       }
       return acc;
     }, []);
-
-    const startCity = targetIndexes
-      .reduce((acc, cur) => {
-        if (!visited.includes(cur)
-          && (tickets.length - 1 === visited.length || tickets.find((i) => i[0] === tickets[cur][1]))) {
-          acc.push([cur, tickets[cur]]);
-        }
-        return acc;
-      }, [])
-      .sort((a, b) => a[1][1].localeCompare(b[1][1]));
-    if (startCity.length) {
-      visited.push(startCity[0][0]);
-      targetCity = startCity[0][1][1];
-    } else {
-      break;
+    
+    for (const targetIndex of targetIndexes) {
+      const visitSities = [...arr];
+      const visitedIndexes = [...visited];
+      visitedIndexes.push(targetIndex);
+      visitSities.push(tickets[targetIndex][1]);
+      if (visitedIndexes.length === tickets.length) {
+        visitedCase.push(visitSities);
+      }
+      visitCity(visitSities, visitedIndexes);
     }
   }
-  return [tickets[visited[0]][0], ...visited.map((city) => tickets[city][1])];
+  visitCity(["ICN"], []);
+
+  return visitedCase.sort((a, b) => a.join("").localeCompare(b.join("")))[0];
 }
