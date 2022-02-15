@@ -1,7 +1,14 @@
-function solution(n) {
-  const fib = [0, 1];
-  for (let i = 2; i <= n; i++) {
-    fib.push((fib[i - 1] + fib[i - 2]) % 1234567);
+function solution(n, t, m, p) {
+  const chars = [];
+  let i = 0;
+  while (chars.length < m * t) {
+    chars.push(...i.toString(n).split("").map((i) => i.toUpperCase()));
+    i++;
   }
-  return fib[fib.length - 1];
+  return chars.reduce((acc, cur, index) => {
+    if (((index) % m) === p - 1) {
+      acc.push(cur);
+    }
+    return acc;
+  }, []).slice(0, t).join("");
 }
