@@ -3,9 +3,9 @@ function solution(n, computers) {
   const visited = [];
 
   function findNetwork(networkIndex, currentIndex) {
-    visited.push(currentIndex);
+    visited[currentIndex] = 1;
     computers[currentIndex].reduce((acc, cur, index) => {
-      if (!visited.includes(index) && cur) {
+      if (!visited[index] && cur) {
         acc.push(index);
       }
       return acc;
@@ -14,7 +14,7 @@ function solution(n, computers) {
   }
 
   for (let index = 0; index < n; index++) {
-    if (!visited.includes(index)) {
+    if (!visited[index]) {
       findNetwork(index, index);
       networkCount++;
     }
