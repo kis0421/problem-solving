@@ -1,19 +1,16 @@
 function solution(k, dungeons) {
   let maxClear = 0;
-
-  function getPermutation(fatigue, arr, n) {
+  const getCourses = (function getPermutation(fatigue, arr, n) {
     const result = [];
-    if (n === 1) {
-      return arr.map((i) => [i]);
-    }
     arr.forEach((fixed, index, origin) => {
       const rest = origin.filter((_, originIndex) => index !== originIndex);
-      const permutations = getPermutation(fatigue - fixed[1], rest, n - 1);
+      const permutations = n === 2 ? arr.map((i) => [i]) : getPermutation(fatigue - fixed[1], rest, n - 1);
       result.push(...permutations.map((v) => [fixed, ...v]));
     });
     return result;
-  }
-  for (const dungeonCourse of getPermutation(k, dungeons, dungeons.length)) {
+  })(k, dungeons, dungeons.length);
+
+  for (const dungeonCourse of getCourses) {
     let fatigue = k;
     let clearCount = 0;
     for (const dungeon of dungeonCourse) {
